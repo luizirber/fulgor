@@ -275,7 +275,6 @@ void meta_intersect(std::vector<Iterator>& iterators, std::vector<uint32_t>& col
                 vector<differential::iterator_type> diff_iterators;
                 std::transform(iterators.begin(), iterators.end(), back_inserter(diff_iterators),
                                [](Iterator a) { return a.partition_it(); });
-                uint32_t start = colors.size();
                 uint32_t lower_bound = iterators[0].partition_upper_bound() - diff_iterators[0].num_colors();
                 diff_intersect(diff_iterators, colors, lower_bound);
             } else {
