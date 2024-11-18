@@ -96,7 +96,7 @@ void intersect(std::vector<Iterator>& iterators, std::vector<uint32_t>& colors,
 }
 
 template <typename Iterator>
-void diff_intersect(std::vector<Iterator>& iterators, std::vector<uint32_t>& colors) {
+void diff_intersect(std::vector<Iterator>& iterators, std::vector<uint32_t>& colors, uint32_t lower_bound = 0) {
     // assert(colors.empty());
 
     if (iterators.empty()) return;
@@ -199,7 +199,7 @@ void diff_intersect(std::vector<Iterator>& iterators, std::vector<uint32_t>& col
             }
         }
         if (i == its.size()) {
-            colors.push_back(candidate);
+            colors.push_back(candidate + lower_bound);
             ++its[0];
             if (its[0] == partitions[0].end()) break;
             candidate = *its[0];
@@ -277,10 +277,7 @@ void meta_intersect(std::vector<Iterator>& iterators, std::vector<uint32_t>& col
                                [](Iterator a) { return a.partition_it(); });
                 uint32_t start = colors.size();
                 uint32_t lower_bound = iterators[0].partition_upper_bound() - diff_iterators[0].num_colors();
-                diff_intersect(diff_iterators, colors);
-                for(uint32_t color = start; color < colors.size(); ++color){
-                    colors[color] += lower_bound; 
-                }
+                diff_intersect(diff_iterators, colors, lower_bound);
             } else {
                 next_geq_intersect(iterators, colors, num_colors);
             }
