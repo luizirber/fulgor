@@ -10,6 +10,8 @@
 #include "permute.cpp"
 #include "pseudoalign.cpp"
 
+#include "tests/test.cpp"
+
 int help(char* arg0) {
     std::cout << "== Fulgor: a colored de Bruijn graph index "
                  "================================"
@@ -57,6 +59,8 @@ int main(int argc, char** argv) {
         return dump(argc - 1, argv + 1);
     } else if (tool == "color") {
         return color(argc - 1, argv + 1);
+    } else if (tool == "test") {
+        return test(argc - 1, argv + 1);
     }
 
     std::cout << "Unsupported tool '" << tool << "'.\n" << std::endl;
