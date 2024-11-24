@@ -5,7 +5,7 @@
 #include "external/CLI11.hpp"
 #include "external/sshash/include/gz/zip_stream.hpp"
 
-#include "tests/intersections.cpp"
+#include "tests/utils.cpp"
 
 using namespace fulgor;
 

@@ -26,11 +26,18 @@ struct index {
 
     void pseudoalign_full_intersection(std::string const& sequence,
                                        std::vector<uint32_t>& results) const;
+    void pseudoalign_full_intersection_timed(std::string const& sequence,
+                                       std::vector<uint32_t>& results,
+                                       std::vector<essentials::timer<std::chrono::high_resolution_clock, std::chrono::nanoseconds>>& timers) const;
     void pseudoalign_threshold_union(std::string const& sequence, std::vector<uint32_t>& results,
                                      const double threshold) const;
 
     void intersect_unitigs(std::vector<uint64_t>& unitig_ids,
                            std::vector<uint32_t>& color_set) const;
+    void intersect_unitigs_timed(std::vector<uint64_t>& unitig_ids,
+                           std::vector<uint32_t>& color_set,
+                           std::vector<essentials::timer<std::chrono::high_resolution_clock, std::chrono::nanoseconds>>& timers) const;
+
 
     std::string_view filename(uint64_t color) const {
         assert(color < num_colors());
